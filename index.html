@@ -54,12 +54,15 @@
         <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'> 00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
-            <button> End </button>
+            <button id='cancel-button'> Cancel </button>
         </div>
     </section>
 
     <script>
-        let flexMinuts = 3;
+        let sound = new Audio('computer-magic.wav');
+        // document.querySelector('#cancel-button').addEventListener('click', () =>{  sound.play()})
+      
+        let flexMinuts = 1;
         let workminutes = flexMinuts;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
@@ -79,10 +82,10 @@
         /************************************/
         function setMinutes() {
             workminutes--;
-            minutesElement.innerText = workminutes;
             if (workminutes < 0) {
-                workminutes = flexMinuts;
+                workminutes = 4;
             }
+            minutesElement.innerText = workminutes;
         }
 
        

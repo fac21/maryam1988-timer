@@ -116,5 +116,31 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
 -ok , it looks better . so I dont need setTimer to change the htmlcontent to 24. strait away I call setSeconds then .
 
 - now is the time to think about after finish 25 minutes work time. first I need to stop settimeout when 25 minutes finish.
-- actually itis good to make these functions flexible to work for both work time and break time 
+- actually it is good to make these functions flexible to work for both work time and break time 
+- so when I had a look at function I realiz tha I can just add some line to setMinutes to make the writen function suitable for break time as well like :
+```
+ function setMinutes() {
+            workminutes--;
+            minutesElement.innerText = workminutes;
+            if (workminutes < 0) {
+                workminutes = 4;
+            } 
+        }
+```
+but it wnt to **-1** so I changed the place of two lines like
+
+```
+ function setMinutes() {
+            workminutes--;
+            if (workminutes < 0) {
+                workminutes = 4;
+            }
+            minutesElement.innerText = workminutes;
+        }
+```
+- now when the work time finish it goes to break time directly .
+- It was my first time I was going to add audio . I have searched and tried playing audio by clicking a button . It was exciting. 
+
+![DJ](DJ.gif)
+
 - the sounde is downloaded from [soundbible](https://soundbible.com/1630-Computer-Magic.html)
