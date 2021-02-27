@@ -45,3 +45,60 @@ so exciting when i saw the seconds part is working,
 ![dance](dance.gif)
 
 but somethings should get changed like : to add 0 before single numbers and it went to 58 after 0 not 59
+
+I added the function for minutes 
+```
+
+        const minutesElement =  document.querySelector('.minutes');
+        function setMinutes() {
+            workminutes--;
+            minutesElement.innerText = workminutes;
+            if (workminutes <= 0) {
+                workminutes = 0;
+            }
+            setTimeout(setMinutes, 60000)
+        }
+```
+
+to call both function together when click event happens, I made a callback includes both
+```
+  function workTimer(){
+            setSeconds();
+            setMinutes();
+        }
+```
+-let's see what will happen
+
+Ok
+- I need to concatenate **Colone:**
+- but before seconds comes to zero , minutes get reduce :expressionless:
+what about if I add a callback function in setSeconds function when the seconds comes to zero !!!! like :
+
+```
+ function setSeconds() {
+            workseconds--;
+            secondsElement.innerText = workseconds;
+            if (workseconds <= 0) {
+                workseconds = 60;
+                 setMinutes()                         //this line has added and settimeout hase removed from setminutes function
+            }
+            setTimeout(setSeconds, 1000)
+        }
+
+           function setMinutes() {
+            workminutes--;
+            minutesElement.innerText = workminutes;
+            if (workminutes <= 0) {
+                workminutes = 0;
+            }
+        }
+```
+
+when I click start button the minut is 25 and it shows 25:59 but I want  24:59 so I will make a call back that first change inner html to 24
+```
+ function setTimer(){
+            minutesElement.innerText = 24;
+            setSeconds();
+        }
+        document.querySelector('#start-button').addEventListener('click', setTimer)
+```

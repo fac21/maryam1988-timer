@@ -51,7 +51,7 @@
 <body>
     <section class="wrapper stack-lg center">
         <div class="center width-min"> Time to study</div>
-        <div class="timer center width-min"><span class='minutes'>24 :</span><span class='seconds'> 59</span></div>
+        <div class="timer center width-min"><span class='minutes'>25 :</span><span class='seconds'> 00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
             <button> End </button>
@@ -59,18 +59,32 @@
     </section>
 
     <script>
-        let workminutes = 25;
+        let workminutes = 24;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
+        const minutesElement =  document.querySelector('.minutes');
         function setSeconds() {
             workseconds--;
             secondsElement.innerText = workseconds;
-            if (workseconds <= 0) {
-                workseconds = 59
+            if (workseconds == 1) {
+                workseconds = 60
+                setMinutes();
             }
             setTimeout(setSeconds, 1000)
         }
-        document.querySelector('#start-button').addEventListener('click', setSeconds)
+        function setMinutes() {
+            workminutes--;
+            minutesElement.innerText = workminutes;
+            if (workminutes <= 0) {
+                workminutes = 0;
+            }
+        }
+
+        function setTimer(){
+            minutesElement.innerText = 24;
+            setSeconds();
+        }
+        document.querySelector('#start-button').addEventListener('click', setTimer)
 
     </script>
 </body>
