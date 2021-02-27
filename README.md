@@ -23,3 +23,22 @@ We might need things like<br>
 
 - to choose between *innerHTML, innerText, and textContent* I have read 
 [betterprogramming website](https://betterprogramming.pub/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc)
+
+-first lines of Js
+```
+    let workminutes = 25;
+        let workseconds = 60;
+        const secondsElement = document.querySelector('.seconds');
+        function setSeconds() {
+            workseconds--;
+            secondsElement.innerText = workseconds;
+            if (workseconds <= 0) {
+                workseconds = 59
+            }
+            setTimeout(setSeconds, 1000)
+        }
+        document.querySelector('#start-button').addEventListener('click', setSeconds)
+```
+
+so exciting when i saw the seconds part is working, but somethings should get changed like : to add 0 before single numbers and it went to 58 after 0 not 59
+![dance](dance.gif)
