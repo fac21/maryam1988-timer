@@ -84,7 +84,10 @@
             workminutes--;
             if (workminutes < 0) {
                 sound.play();
-                workminutes = 4;
+                workminutes = 1;
+                if (workminutes == 0 && workseconds==59 ) {
+                    clearTimeout(workTimeId);
+                }
             }
             minutesElement.innerText = workminutes;
         }

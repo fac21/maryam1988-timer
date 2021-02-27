@@ -144,3 +144,18 @@ but it wnt to **-1** so I changed the place of two lines like
 ![DJ](DJ.gif)
 
 - the sounde is downloaded from [soundbible](https://soundbible.com/1630-Computer-Magic.html)
+
+- I wanted to stop timer after break time but in this way doesnt work 
+```
+   function setMinutes() {
+            workminutes--;
+            if (workminutes < 0) {
+                sound.play();
+                workminutes = 1;
+                if (workminutes == 0 && workseconds==59 ) {     //has added
+                    clearTimeout(workTimeId);
+                }
+            }
+            minutesElement.innerText = workminutes;
+        }
+```
