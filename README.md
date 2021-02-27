@@ -114,3 +114,7 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
             }
 ```
 -ok , it looks better . so I dont need setTimer to change the htmlcontent to 24. strait away I call setSeconds then .
+
+- now is the time to think about after finish 25 minutes work time. first I need to stop settimeout when 25 minutes finish.
+- actually itis good to make these functions flexible to work for both work time and break time 
+- the sounde is downloaded from [soundbible](https://soundbible.com/1630-Computer-Magic.html)

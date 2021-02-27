@@ -51,7 +51,7 @@
 <body>
     <section class="wrapper stack-lg center">
         <div class="center width-min"> Time to study</div>
-        <div class="timer center width-min"><span class='minutes'>25 :</span><span class='seconds'> 00</span></div>
+        <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'> 00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
             <button> End </button>
@@ -59,10 +59,12 @@
     </section>
 
     <script>
-        let workminutes = 25;
+        let flexMinuts = 3;
+        let workminutes = flexMinuts;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
         const minutesElement =  document.querySelector('.minutes');
+
         function setSeconds() {
             workseconds--;
             secondsElement.innerText = workseconds;
@@ -72,13 +74,14 @@
             if(workseconds == 59){
                 setMinutes();
             }
-            setTimeout(setSeconds, 1000)
+            let workTimeId = setTimeout(setSeconds, 1000)
         }
+        /************************************/
         function setMinutes() {
             workminutes--;
             minutesElement.innerText = workminutes;
-            if (workminutes <= 0) {
-                workminutes = 0;
+            if (workminutes < 0) {
+                workminutes = flexMinuts;
             }
         }
 
