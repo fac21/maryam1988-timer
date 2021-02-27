@@ -1,5 +1,8 @@
 ![project](pomodoro.gif)
 ![challenge-explaination](screen.png)
+
+Having the word of ‘timer’ invite SETTIMEOUT to my mind and word of ‘count’ reminds me of a while loop which I am not sure about it. 
+
 ![brain-warming](brain-warming.jpg)
 
 - What about  considering a function that every one second do reduction and replace the string?!!!
