@@ -18,7 +18,7 @@
             background-color: beige;
         }
 
-        .stack-lg> *+* {
+        .stack-lg>*+* {
             margin-top: 2rem;
         }
 
@@ -35,12 +35,12 @@
             align-items: center;
         }
 
-        .button-cover {
-          
-        }
-        .timer span{
+        .button-cover {}
+
+        .timer span {
             font-size: 2rem;
         }
+
         button {
             background-color: rgb(22, 145, 161);
             cursor: pointer;
@@ -51,15 +51,27 @@
 <body>
     <section class="wrapper stack-lg center">
         <div class="center width-min"> Time to study</div>
-        <div class="timer center width-min"><span>24 :</span><span> 59</span></div>
+        <div class="timer center width-min"><span class='minutes'>24 :</span><span class='seconds'> 59</span></div>
         <div class="button-cover row center width-min ">
-            <button> Start </button>
+            <button id='start-button'> Start </button>
             <button> End </button>
         </div>
     </section>
 
     <script>
-        let workTime= document.querySelector
+        let workminutes = 25;
+        let workseconds = 60;
+        const secondsElement = document.querySelector('.seconds');
+        function setSeconds() {
+            workseconds--;
+            secondsElement.innerText = workseconds;
+            if (workseconds <= 0) {
+                workseconds = 59
+            }
+            setTimeout(setSeconds, 1000)
+        }
+        document.querySelector('#start-button').addEventListener('click', setSeconds)
+
     </script>
 </body>
 

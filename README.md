@@ -20,3 +20,6 @@ We might need things like<br>
 - Can I make a reaping function for seconds? like every 59 seconds comes back to start and for minutes every 60000 reduce 1 !!!!???????? :clock12:
 - Do I need to use `setTimeut` or `seInterval` ?
 ![brain-warming2](brain-warming2.jpg)
+
+- to choose between *innerHTML, innerText, and textContent* I have read 
+[betterprogramming website](https://betterprogramming.pub/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc)
