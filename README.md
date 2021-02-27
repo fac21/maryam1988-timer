@@ -40,5 +40,6 @@ We might need things like<br>
         document.querySelector('#start-button').addEventListener('click', setSeconds)
 ```
 
-so exciting when i saw the seconds part is working, but somethings should get changed like : to add 0 before single numbers and it went to 58 after 0 not 59
+so exciting when i saw the seconds part is working,
 ![dance](dance.gif)
+but somethings should get changed like : to add 0 before single numbers and it went to 58 after 0 not 59
