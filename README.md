@@ -102,3 +102,15 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
         }
         document.querySelector('#start-button').addEventListener('click', setTimer)
 ```
+- when the seconds was equal **1** the minute gets changed but I dont want it so I separate the if statment in the setsecond function 
+
+-so the if statement has changed to 
+```
+            if (workseconds == 1) {
+                workseconds = 60
+            }
+            if(workseconds == 59){
+                setMinutes();
+            }
+```
+-ok , it looks better . so I dont need setTimer to change the htmlcontent to 24. strait away I call setSeconds then .

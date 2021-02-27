@@ -59,7 +59,7 @@
     </section>
 
     <script>
-        let workminutes = 24;
+        let workminutes = 25;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
         const minutesElement =  document.querySelector('.minutes');
@@ -68,6 +68,8 @@
             secondsElement.innerText = workseconds;
             if (workseconds == 1) {
                 workseconds = 60
+            }
+            if(workseconds == 59){
                 setMinutes();
             }
             setTimeout(setSeconds, 1000)
@@ -80,11 +82,8 @@
             }
         }
 
-        function setTimer(){
-            minutesElement.innerText = 24;
-            setSeconds();
-        }
-        document.querySelector('#start-button').addEventListener('click', setTimer)
+       
+        document.querySelector('#start-button').addEventListener('click', setSeconds)
 
     </script>
 </body>
