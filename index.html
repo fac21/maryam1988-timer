@@ -83,6 +83,7 @@
         function setMinutes() {
             workminutes--;
             if (workminutes < 0) {
+                sound.play();
                 workminutes = 4;
             }
             minutesElement.innerText = workminutes;
