@@ -151,7 +151,7 @@ but it wnt to **-1** so I changed the place of two lines like
             workminutes--;
             if (workminutes < 0) {
                 sound.play();
-                workminutes = 1;
+                workminutes = 1;     // I uses these numbers like 1 , just to speed up function testing 
                 if (workminutes == 0 && workseconds==59 ) {     //has added which was a shame . how I didnt notice 59 . I think my brin just wanted to test that way which didnt work (Hahaha)
                     clearTimeout(workTimeId);
                 }
