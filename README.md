@@ -152,10 +152,18 @@ but it wnt to **-1** so I changed the place of two lines like
             if (workminutes < 0) {
                 sound.play();
                 workminutes = 1;
-                if (workminutes == 0 && workseconds==59 ) {     //has added
+                if (workminutes == 0 && workseconds==59 ) {     //has added which was a shame . how I didnt notice 59 . I think my brin just wanted to test that way which didnt work (Hahaha)
                     clearTimeout(workTimeId);
                 }
             }
             minutesElement.innerText = workminutes;
         }
 ```
+- for now let's think about pause button 
+```
+ function pause(){
+            clearTimeout(workTimeId);
+        }
+        document.querySelector('#pause-button').addEventListener('click', pause)
+```
+- It worked :grinning:
