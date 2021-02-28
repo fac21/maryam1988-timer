@@ -167,3 +167,13 @@ but it wnt to **-1** so I changed the place of two lines like
         document.querySelector('#pause-button').addEventListener('click', pause)
 ```
 - It worked :grinning:
+
+
+
+--------------------------------------------------------------------------------------------------
+Sunday 28th
+------------
+thinking about adjustable timeing
+![goadls](goals.png)
+I need to search about the thing which is in my mind that is sending the user input  to javascript
+![search](search.png)
