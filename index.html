@@ -40,7 +40,9 @@
         .timer span {
             font-size: 2rem;
         }
-
+        input{
+            width: 2rem;
+        }
         button {
             background-color: rgb(22, 145, 161);
             cursor: pointer;
@@ -51,19 +53,33 @@
 <body>
     <section class="wrapper stack-lg center">
         <div class="center width-min"> Time to study</div>
+        <div class="center width-min">
+            <input type='text' id="work-min" name='work-min'>
+            <input type='text' name='break-min'>
+        </div>
         <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'> 00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
             <button id='pause-button'> Pause </button>
+            <button id='set-button'> set </button>
         </div>
     </section>
 
     <script>
+       var workMin;
+          document.querySelector('#set-button').addEventListener('click', func)
+        function func(){
+            console.log('m');
+            workMin = document.querySelector("input[name='work-min']").value;
+        }
+
+
+
         let sound = new Audio('computer-magic.wav');
         // document.querySelector('#cancel-button').addEventListener('click', () =>{  sound.play()})
         var workTimeId;
-        let flexMinuts = 1;
-        let workminutes = flexMinuts;
+        // let flexMinuts = workMin;
+        let workminutes = workMin;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
         const minutesElement =  document.querySelector('.minutes');

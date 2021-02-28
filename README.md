@@ -177,3 +177,17 @@ thinking about adjustable timeing
 ![goadls](goals.png)
 I need to search about the thing which is in my mind that is sending the user input  to javascript
 ![search](search.png)
+
+-why it doesnt work !!!!
+```
+    var workMin;
+          document.querySelector('#set-button').addEventListener('click', func)
+        function func(){
+            console.log('m');
+            workMin = document.querySelector("input[name='work-min']").value;
+        }
+
+
+        var workTimeId;
+        let workminutes = workMin;
+    ```
