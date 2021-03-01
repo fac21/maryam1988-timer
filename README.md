@@ -266,4 +266,24 @@ so **worked**
 
 ![console2](console2.png)
 
-I think bxause I have declared  `workMin` and `breakMin` at the beggining of the stseonds function . I will take the out
+I think bxause I have declared  `workMin` and `breakMin` at the beggining of the stseonds function . I will take the out.
+- but in this case setseconds doesnt recognize them and gives the error of input is empty :eyes: :sweat:
+
+I have define a new parent function to be the callback of my start button's click event and declared those naughty variables at the beginning of it . It worked  :smiley: :hourglass_flowing_sand:
+
+`document.querySelector('#start-button').addEventListener('click', setTimer)'
+
+```javascript 
+ function setTimer() {
+
+            workMin = document.querySelector('#work-min').value;
+            breakMin = document.querySelector('#break-min').value;
+
+            if (workMin == "" || breakMin == "") {
+                clearTimeout(workTimeId);
+                alert("please enter the work and break time");
+            } else {
+                setSeconds()
+            }
+        }
+```

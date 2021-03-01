@@ -69,34 +69,30 @@
 
     <script>
 
-        //       document.querySelector('#set-button').addEventListener('click', func)
-        //     function func(){
-        //         console.log('m');
-        //         workMin = document.querySelector("input[name='work-min']").value;
-        //         console.log(workMin);
-        //     }
-        //     console.log(workMin);
-
-
         let sound = new Audio('computer-magic.wav');
-        // document.querySelector('#cancel-button').addEventListener('click', () =>{  sound.play()})
         var workTimeId;
-        // let flexMinuts = workMin;
-        var workMin;
-        var breakMin;
-        workMin = document.querySelector('#work-min').value;
-        breakMin =  document.querySelector('#break-min').value;
+        let workMin;
+        let breakMin;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
         const minutesElement = document.querySelector('.minutes');
 
-        function setSeconds() {
-    
-            if(workMin == "" || breakMin == ""){
+        function setTimer() {
+
+            workMin = document.querySelector('#work-min').value;
+            breakMin = document.querySelector('#break-min').value;
+
+            if (workMin == "" || breakMin == "") {
                 clearTimeout(workTimeId);
                 alert("please enter the work and break time");
-            }else {
-                workseconds--;
+            } else {
+                setSeconds()
+            }
+        }
+        /************************************/
+        function setSeconds() {
+
+            workseconds--;
             secondsElement.innerText = workseconds;
             if (workseconds == 1) {
                 workseconds = 60
@@ -105,12 +101,12 @@
                 setMinutes();
             }
             workTimeId = setTimeout(setSeconds, 1000)
-            }
+
         }
         /************************************/
         function setMinutes() {
             console.log(workMin)
-          
+
             workMin--;
             console.log(workMin)
 
@@ -123,7 +119,7 @@
         }
 
 
-        document.querySelector('#start-button').addEventListener('click', setSeconds)
+        document.querySelector('#start-button').addEventListener('click', setTimer)
 
 
         function pause() {
