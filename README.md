@@ -25,7 +25,7 @@ We might need things like<br>
 [betterprogramming website](https://betterprogramming.pub/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc)
 
 -first lines of Js
-```
+```javascript
     let workminutes = 25;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
@@ -47,7 +47,7 @@ so exciting when i saw the seconds part is working,
 but somethings should get changed like : to add 0 before single numbers and it went to 58 after 0 not 59
 
 I added the function for minutes 
-```
+```javascript
 
         const minutesElement =  document.querySelector('.minutes');
         function setMinutes() {
@@ -61,7 +61,7 @@ I added the function for minutes
 ```
 
 to call both function together when click event happens, I made a callback includes both
-```
+```javascript
   function workTimer(){
             setSeconds();
             setMinutes();
@@ -74,7 +74,7 @@ Ok
 - but before seconds comes to zero , minutes get reduce :expressionless:
 what about if I add a callback function in setSeconds function when the seconds comes to zero !!!! like :
 
-```
+```javascript
  function setSeconds() {
             workseconds--;
             secondsElement.innerText = workseconds;
@@ -95,7 +95,7 @@ what about if I add a callback function in setSeconds function when the seconds 
 ```
 
 when I click start button the minut is 25 and it shows 25:59 but I want  24:59 so I will make a call back that first change inner html to 24
-```
+```javascript
  function setTimer(){
             minutesElement.innerText = 24;
             setSeconds();
@@ -105,7 +105,7 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
 - when the seconds was equal **1** the minute gets changed but I dont want it so I separate the if statment in the setsecond function 
 
 -so the if statement has changed to 
-```
+```javascript
             if (workseconds == 1) {
                 workseconds = 60
             }
@@ -118,7 +118,7 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
 - now is the time to think about after finish 25 minutes work time. first I need to stop settimeout when 25 minutes finish.
 - actually it is good to make these functions flexible to work for both work time and break time 
 - so when I had a look at function I realiz tha I can just add some line to setMinutes to make the writen function suitable for break time as well like :
-```
+```javascript
  function setMinutes() {
             workminutes--;
             minutesElement.innerText = workminutes;
@@ -129,7 +129,7 @@ when I click start button the minut is 25 and it shows 25:59 but I want  24:59 s
 ```
 but it wnt to **-1** so I changed the place of two lines like
 
-```
+```javascript
  function setMinutes() {
             workminutes--;
             if (workminutes < 0) {
@@ -146,7 +146,7 @@ but it wnt to **-1** so I changed the place of two lines like
 - the sounde is downloaded from [soundbible](https://soundbible.com/1630-Computer-Magic.html)
 
 - I wanted to stop timer after break time but in this way doesnt work 
-```
+```javascript
    function setMinutes() {
             workminutes--;
             if (workminutes < 0) {
@@ -160,7 +160,7 @@ but it wnt to **-1** so I changed the place of two lines like
         }
 ```
 - for now let's think about pause button 
-```
+```javascript
  function pause(){
             clearTimeout(workTimeId);
         }
@@ -179,7 +179,7 @@ I need to search about the thing which is in my mind that is sending the user in
 ![search](search.png)
 
 -why it doesnt work !!!!
-```
+```javascript
     var workMin;
           document.querySelector('#set-button').addEventListener('click', func)
         function func(){
@@ -190,4 +190,80 @@ I need to search about the thing which is in my mind that is sending the user in
 
         var workTimeId;
         let workminutes = workMin;
-    ```
+ ```
+
+![console](console.png)
+
+and I tried this 
+```javascript
+let workMin;
+          document.querySelector('#set-button').addEventListener('click', func)
+        function func(){
+            console.log('m');
+            workMin = document.querySelector("input[name='work-min']").value;
+            console.log(workMin);
+        }
+        console.log(workMin);
+```
+which gave me :  
+undefined
+m
+2
+- I even added it to setSeconds or setMinutes function but gives me **NAN**
+
+-Hey , it's working 
+```javascript 
+ function setMinutes() {
+            let workMin = document.querySelector('#work-min').value;
+            let workminutes = workMin;
+            workminutes--;
+            if (workminutes < 0) {
+                sound.play();
+                workminutes = 1;
+
+            }
+            minutesElement.innerText = workminutes;
+        }
+```
+- I have added 
+```javascript 
+ if(workMin == "" || breakMin == ""){
+                alert("please enter the work and break time")
+            }
+```
+but after clicking ok , the timer starts :expressionless:
+what about 
+```javascript 
+  if(workMin == "" || breakMin == ""){
+                clearTimeout(workTimeId);
+                alert("please enter the work and break time");
+            }
+```
+I fogot to add `else{}`
+so **worked**
+```javascript 
+  function setSeconds() {
+            workMin = document.querySelector('#work-min').value;
+            breakMin =  document.querySelector('#break-min').value;
+            if(workMin == "" || breakMin == ""){
+                clearTimeout(workTimeId);
+                alert("please enter the work and break time");
+            }else {
+                workseconds--;
+            secondsElement.innerText = workseconds;
+            if (workseconds == 1) {
+                workseconds = 60
+            }
+            if (workseconds == 59) {
+                setMinutes();
+            }
+            workTimeId = setTimeout(setSeconds, 1000)
+            }
+        }
+```
+
+:question: :exclamation: It seems like , seMinutes doesnt work . !!!!!???
+
+![console2](console2.png)
+
+I think bxause I have declared  `workMin` and `breakMin` at the beggining of the stseonds function . I will take the out

@@ -40,9 +40,11 @@
         .timer span {
             font-size: 2rem;
         }
-        input{
+
+        input {
             width: 2rem;
         }
+
         button {
             background-color: rgb(22, 145, 161);
             cursor: pointer;
@@ -55,62 +57,76 @@
         <div class="center width-min"> Time to study</div>
         <div class="center width-min">
             <input type='text' id="work-min" name='work-min'>
-            <input type='text' name='break-min'>
+            <input type='text' id="break-min" name='break-min'>
         </div>
-        <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'> 00</span></div>
+        <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'>
+                00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
             <button id='pause-button'> Pause </button>
-            <button id='set-button'> set </button>
         </div>
     </section>
 
     <script>
-       var workMin;
-          document.querySelector('#set-button').addEventListener('click', func)
-        function func(){
-            console.log('m');
-            workMin = document.querySelector("input[name='work-min']").value;
-        }
 
+        //       document.querySelector('#set-button').addEventListener('click', func)
+        //     function func(){
+        //         console.log('m');
+        //         workMin = document.querySelector("input[name='work-min']").value;
+        //         console.log(workMin);
+        //     }
+        //     console.log(workMin);
 
 
         let sound = new Audio('computer-magic.wav');
         // document.querySelector('#cancel-button').addEventListener('click', () =>{  sound.play()})
         var workTimeId;
         // let flexMinuts = workMin;
-        let workminutes = workMin;
+        var workMin;
+        var breakMin;
+        workMin = document.querySelector('#work-min').value;
+        breakMin =  document.querySelector('#break-min').value;
         let workseconds = 60;
         const secondsElement = document.querySelector('.seconds');
-        const minutesElement =  document.querySelector('.minutes');
+        const minutesElement = document.querySelector('.minutes');
 
         function setSeconds() {
-            workseconds--;
+    
+            if(workMin == "" || breakMin == ""){
+                clearTimeout(workTimeId);
+                alert("please enter the work and break time");
+            }else {
+                workseconds--;
             secondsElement.innerText = workseconds;
             if (workseconds == 1) {
                 workseconds = 60
             }
-            if(workseconds == 59){
+            if (workseconds == 59) {
                 setMinutes();
             }
             workTimeId = setTimeout(setSeconds, 1000)
+            }
         }
         /************************************/
         function setMinutes() {
-            workminutes--;
-            if (workminutes < 0) {
+            console.log(workMin)
+          
+            workMin--;
+            console.log(workMin)
+
+            if (workMin < 0) {
                 sound.play();
-                workminutes = 1;
-              
+                workminutes = breakMin;
+
             }
-            minutesElement.innerText = workminutes;
+            minutesElement.innerText = workMin--;
         }
 
-       
+
         document.querySelector('#start-button').addEventListener('click', setSeconds)
 
 
-        function pause(){
+        function pause() {
             clearTimeout(workTimeId);
         }
         document.querySelector('#pause-button').addEventListener('click', pause)
