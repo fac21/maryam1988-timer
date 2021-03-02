@@ -337,3 +337,11 @@ function set(){
 ```
 
 - when I click start button more than once it trigger running function again , means `currentTime--` happens and reduce the seconds which I dont want . and because I seperate `set()` assigning variable is happening in set function , otherwise after every click the time came back to the beggining.  WHAT I can do now :question: :exclamation:
+-----------------------------------------------------------------------------------------------------------------------------
+Tue 2nd
+---------
+I was thinking about make the **set** button and **start** button to toggle . set-reset and start pause. and my brain ordered me that it might be the time to think more about css as I am more sure about most function I need . 
+I like to allw user  upload a picture for background . but I want to make an image crousol as well for background
+I tried to follow the method we have learned to use modifier classes but I am getting crazy actullly . 
+![css-modifier](css.gif)
+![css-crazy](css-crazy.gif)
