@@ -59,8 +59,7 @@
             <input type='text' id="work-min" name='work-min'>
             <input type='text' id="break-min" name='break-min'>
         </div>
-        <div class="timer center width-min"><span class='minutes'>00</span><span> : </span><span class='seconds'>
-                00</span></div>
+        <div class="timer center width-min"><span id="time">00:00</span></div>
         <div class="button-cover row center width-min ">
             <button id='start-button'> Start </button>
             <button id='pause-button'> Pause </button>
@@ -73,50 +72,73 @@
         var workTimeId;
         let workMin;
         let breakMin;
-        let workseconds = 60;
-        const secondsElement = document.querySelector('.seconds');
-        const minutesElement = document.querySelector('.minutes');
+        // let workseconds = 60;
+        let currentTime;
+        let minutes;
+        let seconds;
+        const timeElement = document.querySelector('#time');
+        
 
         function setTimer() {
-
+        
             workMin = document.querySelector('#work-min').value;
             breakMin = document.querySelector('#break-min').value;
+            currentTime = workMin * 60;
 
             if (workMin == "" || breakMin == "") {
                 clearTimeout(workTimeId);
                 alert("please enter the work and break time");
             } else {
-                setSeconds()
+                setSecMin()
             }
         }
-        /************************************/
-        function setSeconds() {
+        /*****************************************************************************/   
 
-            workseconds--;
-            secondsElement.innerText = workseconds;
-            if (workseconds == 1) {
-                workseconds = 60
+        function setSecMin(){
+            currentTime--
+            minutes=Math.floor(currentTime/60);
+            seconds=currentTime%60;
+            if(minutes<10){                    //just to add a '0' string for the numbers less than 10 
+                minutes = '0' + minutes;
             }
-            if (workseconds == 59) {
-                setMinutes();
+            if(seconds<10){
+                seconds = '0' + seconds;
             }
-            workTimeId = setTimeout(setSeconds, 1000)
-
-        }
-        /************************************/
-        function setMinutes() {
-            console.log(workMin)
-
-            workMin--;
-            console.log(workMin)
-
-            if (workMin < 0) {
+  
+            if (currentTime <= 0) {
                 sound.play();
-                workminutes = breakMin;
+                currentTime = breakMin * 60;
 
             }
-            minutesElement.innerText = workMin--;
+            timeElement.innerText = `${minutes}:${seconds}`
+            workTimeId = setTimeout(setSecMin, 1000)
         }
+
+        /****************************************************************************/
+
+        // function setSeconds() {
+
+        //     workseconds--;
+        //     secondsElement.innerText = workseconds;
+        //     if (workseconds == 1) {
+        //         workseconds = 60
+        //     }
+        //     if (workseconds == 59) {
+        //         setMinutes();
+        //     }
+        //     workTimeId = setTimeout(setSeconds, 1000)
+
+        // }
+        // /*****************************************************************************/
+        // function setMinutes() {
+
+        //     if (workMin < 0) {
+        //         sound.play();
+        //         workMin = breakMin;
+
+        //     }
+        //     minutesElement.innerText = workMin--;
+        // }
 
 
         document.querySelector('#start-button').addEventListener('click', setTimer)

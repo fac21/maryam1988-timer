@@ -287,3 +287,33 @@ I have define a new parent function to be the callback of my start button's clic
             }
         }
 ```
+
+------------------------------------------------------------------------------------------------------------------------------------
+Monday 1st March
+-----------------
+The function was working but it went to minues . I today's sesion with the team I have learned that I can  convert the time to seconds which can be helpful as I wont need to change actual time which user has entered and it can be less confusing and  [human readable time challenge in codwars](https://www.codewars.com/kata/52685f7382004e774f0001f7/train/javascript) can help to understand.
+so I have writen this function . beautiful working :heart_eyes:. actually needs more details but for now it is beautiful
+```javascript
+function setSecMin(){
+            currentTime--
+            minutes=Math.floor(currentTime/60);
+            seconds=currentTime%60;
+            if(minutes<10){
+                minutes = '0' + minutes;
+            }
+            if(seconds<10){
+                seconds = '0' + seconds;
+            }
+            timeElement.innerText = `${minutes}:${seconds}`
+            workTimeId = setTimeout(setSecMin, 1000)
+        }
+``` 
+
+- I have added a line to sort out transition to break time. 
+```javascript
+  if (currentTime <= 0) {
+                sound.play();
+                currentTime = breakMin * 60;
+
+            }
+```
