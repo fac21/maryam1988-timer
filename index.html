@@ -23,20 +23,18 @@
             position: fixed;
             top: 0;
         }
-        .width-min {
-            max-width: 40vw;
-        }
-
+      
         .wrapper {
-            max-width: 60%;
+            width: 60vw;
+            height: 60vh;
             padding-top: 6rem;
             padding-bottom: 2rem;
             position: relative;
             text-align: center;
-        }
-
-        .stack-lg>*+* {
-            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content:center ;
         }
 
 
@@ -45,11 +43,7 @@
             margin-right: auto;
         }
 
-        .row {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
+       
       
         .timer span {
             width: 10vw;
@@ -71,14 +65,14 @@
 
 <body>
     <div class="highlight-page"></div>
-    <section class="wrapper stack-lg center">
-        <div class="center width-min"> Time to study</div>
-        <div class="center width-min">
+    <section class="wrapper center">
+        <div class="center "> Time to study</div>
+        <div class="center ">
             <input type='text' id="work-min" name='work-min'>
             <input type='text' id="break-min" name='break-min'>
         </div>
-        <div class=" row timer center width-min"><span class='center' id="time">00:00</span></div>
-        <div class="button-cover row center width-min ">
+        <div class="timer center "><span class='center' id="time">00:00</span></div>
+        <div class="button-cover  center ">
             <button id='set-button'> set </button>
             <button id='start-button'> Start </button>
             <button id='pause-button'> Pause </button>

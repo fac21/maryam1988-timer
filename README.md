@@ -345,3 +345,6 @@ I like to allw user  upload a picture for background . but I want to make an ima
 I tried to follow the method we have learned to use modifier classes but I am getting crazy actullly . 
 ![css-modifier](css.gif)
 ![css-crazy](css-crazy.gif)
+- I am going to change the method to using flex box . to make all emelents that I used stack-?? for them to be in a parent with an element with `display:flex` and delet current `row` class
+-It seems to be easier to handle for me now
+![css-flex](css-flex.png)
