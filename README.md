@@ -317,3 +317,23 @@ function setSecMin(){
 
             }
 ```
+
+-I have added a set function to give the user an isight of their plan before start. I mean to show the time on the screen before start.
+```javascript
+function set(){
+    workMin = document.querySelector('#work-min').value;
+            breakMin = document.querySelector('#break-min').value;
+            currentTime = workMin * 60;
+            minutes=Math.floor(currentTime/60);
+            seconds=currentTime%60;
+            if(minutes<10){                    //just to add a '0' string for the numbers less than 10 
+                minutes = '0' + minutes;
+            }
+            if(seconds<10){
+                seconds = '0' + seconds;
+            }
+            timeElement.innerText = `${minutes}:${seconds}`
+}
+```
+
+- when I click start button more than once it trigger running function again , means `currentTime--` happens and reduce the seconds which I dont want . and because I seperate `set()` assigning variable is happening in set function , otherwise after every click the time came back to the beggining.  WHAT I can do now :question: :exclamation:
