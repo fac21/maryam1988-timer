@@ -6,39 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maryam-timer</title>
-    <style>
+     <style>
         body {
             width: 100vw;
             height: 100vh;
             margin: 0;
             padding: 0;
             background-image: url(flowers.jpg);
-            background-size:cover;
+            background-size: cover;
             background-repeat: no-repeat;
+            font-size: 2rem;
         }
-        .highlight-page{
+
+        .highlight-page {
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.534);
             position: fixed;
             top: 0;
         }
-      
-        .wrapper {
-            width: 40vw;
-            height: 40vw;
-            margin-top: 2vw;
+
+        .body-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
             position: relative;
+        }
+
+        .wrapper {
+            width: 30rem;
+            height: 30rem;
+
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-content:center ;
-            gap:2rem;
+            align-content: center;
+            gap: 2rem;
             border: 1px solid blanchedalmond;
             border-radius: 50%;
-            box-shadow:0 0.5px 20px rgba(230, 233, 78, 0.2);
-      }
+            box-shadow: 0 0.5px 20px rgba(230, 233, 78, 0.2);
+        }
 
 
         .center {
@@ -46,21 +57,64 @@
             margin-right: auto;
         }
 
-       
-      
+
+
         .timer span {
             width: 10vw;
             font-size: 10vw;
-        
         }
-
+        .input-cover{
+            display: flex;
+            gap:1rem;
+            justify-content: center;
+            align-items: center;
+        }
         input {
-            width: 10vw;
-            height: 5vh;
+            width: 6rem;
+            border: 1px solid blanchedalmond;
+            border-radius: 5%;
+            padding:0.5rem;
+            box-shadow: 0 0.5px 10px rgba(230, 233, 78, 0.2);
+            font-size: 2rem;
         }
-
+        .button-cover{
+            display: flex;
+            gap:1rem;
+        }
+        .button-cover > div{
+            display: flex;
+            flex-direction: column;
+        }
+       
+        
+        #set-button, #reset-button {
+            position: relative;
+            
+        }
+        #reset-button {
+            top:-50%;
+        } 
+        /* #reset-button {
+            opacity: 0;
+            z-index: -5;
+        } */
+        #pause-button, #start-button{
+            position: relative;
+        }
+         #pause-button{
+            top:-50%;
+        } 
+        /* #pause-button{
+            opacity: 0;
+            z-index: -5;
+        } */
         button {
-            background-color: rgb(22, 145, 161);
+            width: 6rem;
+            background-color: rgba(45, 52, 53, 0.432);
+            border: 1px solid blanchedalmond;
+            border-radius: 5%;
+            padding:1rem;
+            box-shadow: 0 0.5px 10px rgba(230, 233, 78, 0.2);
             cursor: pointer;
         }
     </style>
@@ -68,20 +122,26 @@
 
 <body>
     <div class="highlight-page"></div>
-    <section class="wrapper center">
-        <div class="center "> Time to study</div>
-        <div class="center ">
-            <input type='text' id="work-min" name='work-min'>
-            <input type='text' id="break-min" name='break-min'>
-        </div>
-        <div class="timer center "><span class='center' id="time">00:00</span></div>
-        <div class="button-cover  center ">
-            <button id='set-button'> set </button>
-            <button id='start-button'> Start </button>
-            <button id='pause-button'> Pause </button>
-        </div>
-    </section>
-
+    <main class="body-row">
+        <section class="wrapper ">
+            <div class="center "> Note to self : let shit go</div>
+            <div class="input-cover center ">
+                <input type='text' id="work-min" name='work-min'>
+                <input type='text' id="break-min" name='break-min'>
+            </div>
+            <div class="timer center "><span class='center' id="time">00:00</span></div>
+            <div class="button-cover  center ">
+                <div>
+                    <button id='set-button'> set </button>
+                    <button id='reset-button'> reset </button>
+                </div>
+                <div>
+                    <button id='start-button'> Start </button>
+                    <button id='pause-button'> Pause </button>
+                </div>
+            </div>
+        </section>
+    </main>
     <script>
 
         let sound = new Audio('computer-magic.wav');
@@ -118,34 +178,34 @@
         document.querySelector('#start-button').addEventListener('click', statTimer)
 
         function statTimer() {
-           
+
             if (workMin == "" || breakMin == "") {
                 clearTimeout(workTimeId);
                 alert("please enter the work and break time");
             } else {
                 currentTime--
-            
-            minutes = Math.floor(currentTime / 60);
-            seconds = currentTime % 60;
-            if (minutes < 10) {                    //just to add a '0' string for the numbers less than 10 
-                minutes = '0' + minutes;
-            }
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-            }
 
-            if (currentTime <= 0) {
-                sound.play();
-                currentTime = breakMin * 60;
+                minutes = Math.floor(currentTime / 60);
+                seconds = currentTime % 60;
+                if (minutes < 10) {                    //just to add a '0' string for the numbers less than 10 
+                    minutes = '0' + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
 
-            }
-            timeElement.innerText = `${minutes}:${seconds}`
-            workTimeId = setTimeout(statTimer, 1000)
+                if (currentTime <= 0) {
+                    sound.play();
+                    currentTime = breakMin * 60;
+
+                }
+                timeElement.innerText = `${minutes}:${seconds}`
+                workTimeId = setTimeout(statTimer, 1000)
             }
         }
         /*****************************************************************************/
 
-       
+
 
 
         function pause() {

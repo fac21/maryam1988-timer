@@ -348,7 +348,12 @@ I tried to follow the method we have learned to use modifier classes but I am ge
 - I am going to change the method to using flex box . to make all emelents that I used stack-?? for them to be in a parent with an element with `display:flex` and delet current `row` class
 -It seems to be easier to handle for me now
 ![css-flex](css-flex.png)
+------------------------------------------------
+WED 4th
+--------
+I was struggling with some bits of css. I love css but when it comes to being responsive, it ruins every dream I had for my page . It's not its problem actually :grin: . I'm learning :sweat_smile:
 
+- I want to change the buttons. set-reset  start-pause.  So for exaple for set-reset when I click the set button **reset** button should get active maybe to toggle between display none and inline-block. but I'd like to add animation . for display block , animation doesnt work . and `opacity = 0` wont work because I need to click on both . what about if I hid it in a small element and then overlap:hidden and giving it a position and draw it down after click . let me do something I will keep you posted . 
 
 
 
