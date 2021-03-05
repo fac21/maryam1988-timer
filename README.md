@@ -397,3 +397,80 @@ for reset function to clear input
 **Doesn't work**             **کار نمیکنه**
 
 
+- because after one round of work time break time is repeating I declare a new variable to count the number of break time round and after one time 
+```javascript 
+let count = 0; 
+ if (currentTime <= 0) {
+                    console.log(count)
+                    count++;
+                    console.log(count)
+
+                    if(count ==1){
+                        sound.play();
+                    currentTime = breakMin * 60;
+                    }else{
+                        timeElement.innerText = '00:00'
+                        clearTimeout(workTimeId);
+                    }
+```
+ but after one round it goes to minues numbers. !!!!!??????
+ ![break-reset](break-reset.png)
+
+ still doen't work
+ ```javascript
+      if (currentTime <= 0) {
+                    console.log(count)
+                    count++;
+                    console.log(count)
+
+                    if(count ==1){
+                        sound.play();
+                    currentTime = breakMin * 60;
+                    
+                    }else if(count > 1){
+                        clearTimeout(workTimeId);
+                        timeElement.innerText = '00:00'
+                       
+                    }
+```
+
+- **Yeaaaay** this one is working . I remember Oli said when we use **return** in the function means function stop in that point. so I returned dom changing . It works. 
+  
+```javascript
+  //it is working
+         if (currentTime <= 0) {
+                    console.log(count)
+                    count++;
+                    console.log(count)
+
+                    if(count ==1){
+                        sound.play();
+                    currentTime = breakMin * 60;
+                    
+                    }else if(count > 1){
+                        clearTimeout(workTimeId);
+                        console.log(timeElement.innerText = '00:00')
+                       return timeElement.innerText = '00:00'
+                       
+                    } 
+                }
+
+ ```
+
+- even it works without clearsettimeout 
+```javascript
+if (count == 1) {
+                        sound.play();
+                        currentTime = breakMin * 60;
+
+                    } else if (count > 1) {
+                        workMinElement.value = "";
+                        breakMinElement.value = "";
+                        setButton.style.opacity = 1;
+                        setButton.style['z-index'] = 0;
+                        resetButton.style.opacity = 0;
+                        resetButton.style['z-index'] = -5;
+                        return timeElement.innerText = '00:00'
+
+                    }
+```

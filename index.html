@@ -191,13 +191,14 @@
         }
 
         /********************************************************************************************/
+        let count = 0;
         startButton.addEventListener('click', startTimer)
         function startTimer() {
             workMin = workMinElement.value;
             breakMin = breakMinElement.value;
             if (workMin == "" || breakMin == "") {
                 alert("please enter the work and break time");
-            } else if ( !workTimeId && timeElement.innerText == `00:00`){
+            } else if (!workTimeId && timeElement.innerText == `00:00`) {
                 alert("Amazing please set");
             }
             else {
@@ -215,11 +216,31 @@
                     seconds = '0' + seconds;
                 }
                 if (currentTime <= 0) {
+                    console.log(count)
+                    count++;
+                    console.log(count)
 
-                    sound.play();
-                    currentTime = breakMin * 60;
+                    if (count == 1) {
+                        sound.play();
+                        currentTime = breakMin * 60;
+
+                    } else if (count > 1) {
+                        workMinElement.value = "";
+                        breakMinElement.value = "";
+                        setButton.style.opacity = 1;
+                        setButton.style['z-index'] = 0;
+                        resetButton.style.opacity = 0;
+                        resetButton.style['z-index'] = -5;
+                        startButton.style.opacity = 1;
+                        startButton.style['z-index'] = 0;
+                        pauseButton.style.opacity = 0;
+                        pauseButton.style['z-index'] = -5;
+                        return timeElement.innerText = '00:00'
+
+                    }
+
                 }
-              
+
                 timeElement.innerText = `${minutes}:${seconds}`
                 workTimeId = setTimeout(startTimer, 1000)
             }
@@ -239,31 +260,6 @@
         pauseButton.addEventListener('click', pause)
 
         /****************************************************************************/
-
-        // function setSeconds() {
-
-        //     workseconds--;
-        //     secondsElement.innerText = workseconds;
-        //     if (workseconds == 1) {
-        //         workseconds = 60
-        //     }
-        //     if (workseconds == 59) {
-        //         setMinutes();
-        //     }
-        //     workTimeId = setTimeout(setSeconds, 1000)
-
-        // }
-        // /*****************************************************************************/
-        // function setMinutes() {
-
-        //     if (workMin < 0) {
-        //         sound.play();
-        //         workMin = breakMin;
-
-        //     }
-        //     minutesElement.innerText = workMin--;
-        // }
-
 
 
 
