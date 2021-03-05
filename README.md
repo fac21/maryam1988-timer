@@ -354,7 +354,46 @@ WED 4th
 I was struggling with some bits of css. I love css but when it comes to being responsive, it ruins every dream I had for my page . It's not its problem actually :grin: . I'm learning :sweat_smile:
 
 - I want to change the buttons. set-reset  start-pause.  So for exaple for set-reset when I click the set button **reset** button should get active maybe to toggle between display none and inline-block. but I'd like to add animation . for display block , animation doesnt work . and `opacity = 0` wont work because I need to click on both . what about if I hid it in a small element and then overlap:hidden and giving it a position and draw it down after click . let me do something I will keep you posted . 
+---------------------------------------------------------------------
+FRI 5th
+--------
+I was working on css and it would be so annoying if I wanted to report every little changes . but I have change some css parts and is needed to be changed more . 
+- when I change the buttons to toggle do I needed to modify functions as well so I added 
+```javascript
+            setButton.style.opacity = 0;
+            setButton.style['z-index'] = -5;
+            resetButton.style.opacity = 1;
+            resetButton.style['z-index'] = 0;
+```
+to **set()** . when the user click set the **reset** button get visible and come to the upper layer and it is going to be vic versa for reset function and 
+```javascript
+  workMin = document.querySelector('#work-min').value;
+            breakMin = document.querySelector('#break-min').value;
+```
+for reset function to clear input 
+
+- I like my idea for taggle button because I am not struggling to fix the problem with settimeout when I click the start button for several time  :innocent:
+
+:sweat_smile: :sweat_smile: :sweat_smile: :sweat_smile: 
+ :sweat_smile:  “I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.Bill Gates said. 
+:sweat_smile: :sweat_smile: :sweat_smile: :sweat_smile: 
+
+- i wanted to add an option that when add number with pressing enter it gets started and I found [this website](https://www.freecodecamp.org/news/javascript-keycode-list-keypress-event-key-codes/) but I have just gaiven up for now as I need to work on another features I want
 
 
+- I wanted to reset the timer after finishing break time . I tried by writing 
+```javascript 
+  if (currentTime <= 0) {
+
+                    sound.play();
+                    currentTime = breakMin * 60;
+                    breakOnOff = false;  //either true
+                }
+                if(breakOnOff == false && currentTime <= 0 ){
+                    clearTimeout(workTimeId);
+                    timeElement.innerText = "welldone"
+                }
+```
+**Doesn't work**             **کار نمیکنه**
 
 

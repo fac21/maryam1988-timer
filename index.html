@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maryam-timer</title>
-     <style>
+    <style>
         body {
             width: 100vw;
             height: 100vh;
@@ -37,9 +37,8 @@
         }
 
         .wrapper {
-            width: 30rem;
-            height: 30rem;
-
+            width: 40rem;
+            height: 40rem;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -63,59 +62,51 @@
             width: 10vw;
             font-size: 10vw;
         }
-        .input-cover{
+
+        .input-cover {
             display: flex;
-            gap:1rem;
+            gap: 1rem;
             justify-content: center;
             align-items: center;
         }
+
         input {
             width: 6rem;
             border: 1px solid blanchedalmond;
             border-radius: 5%;
-            padding:0.5rem;
+            padding: 0.5rem;
             box-shadow: 0 0.5px 10px rgba(230, 233, 78, 0.2);
             font-size: 2rem;
         }
-        .button-cover{
+
+        .button-cover {
             display: flex;
-            gap:1rem;
+            gap: 1rem;
         }
-        .button-cover > div{
+
+        .button-cover>div {
             display: flex;
             flex-direction: column;
         }
-       
-        
-        #set-button, #reset-button {
-            position: relative;
-            
-        }
-        #reset-button {
-            top:-50%;
-        } 
-        /* #reset-button {
-            opacity: 0;
-            z-index: -5;
-        } */
-        #pause-button, #start-button{
-            position: relative;
-        }
-         #pause-button{
-            top:-50%;
-        } 
-        /* #pause-button{
-            opacity: 0;
-            z-index: -5;
-        } */
+
         button {
             width: 6rem;
-            background-color: rgba(45, 52, 53, 0.432);
-            border: 1px solid blanchedalmond;
-            border-radius: 5%;
-            padding:1rem;
+            background: linear-gradient(339deg, rgba(255, 255, 255, 0.4) 5%, rgba(0, 0, 0, 0) 100%);
+            padding: 1rem;
+            border: hidden;
+            border-radius: 10%;
             box-shadow: 0 0.5px 10px rgba(230, 233, 78, 0.2);
             cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        #reset-button,
+        #pause-button {
+            opacity: 0;
+            z-index: -5;
+            top: -50%;
+            position: relative;
+            background: linear-gradient(339deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.4) 100%);
         }
     </style>
 </head>
@@ -153,38 +144,26 @@
         let minutes;
         let seconds;
         const timeElement = document.querySelector('#time');
-
+        const setButton = document.querySelector('#set-button');
+        const resetButton = document.querySelector('#reset-button');
+        const startButton = document.querySelector('#start-button');
+        const pauseButton = document.querySelector('#pause-button');
+        const workMinElement = document.querySelector('#work-min');
+        const breakMinElement = document.querySelector('#break-min');
         /*********************************************************     SET THE TIME - SHOW ON THE SCREEN   ********************/
 
-
-        document.querySelector('#set-button').addEventListener('click', set)
-
+        setButton.addEventListener('click', set)
         function set() {
-            workMin = document.querySelector('#work-min').value;
-            breakMin = document.querySelector('#break-min').value;
-            currentTime = workMin * 60;
-            minutes = Math.floor(currentTime / 60);
-            seconds = currentTime % 60;
-            if (minutes < 10) {                    //just to add a '0' string for the numbers less than 10 
-                minutes = '0' + minutes;
-            }
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-            }
-            timeElement.innerText = `${minutes}:${seconds}`
-        }
-
-        /********************************************************************************************/
-        document.querySelector('#start-button').addEventListener('click', statTimer)
-
-        function statTimer() {
-
+            workMin = workMinElement.value;
+            breakMin = breakMinElement.value;
             if (workMin == "" || breakMin == "") {
-                clearTimeout(workTimeId);
                 alert("please enter the work and break time");
             } else {
-                currentTime--
-
+                setButton.style.opacity = 0;
+                setButton.style['z-index'] = -5;
+                resetButton.style.opacity = 1;
+                resetButton.style['z-index'] = 0;
+                currentTime = workMin * 60;
                 minutes = Math.floor(currentTime / 60);
                 seconds = currentTime % 60;
                 if (minutes < 10) {                    //just to add a '0' string for the numbers less than 10 
@@ -193,14 +172,56 @@
                 if (seconds < 10) {
                     seconds = '0' + seconds;
                 }
+                timeElement.innerText = `${minutes}:${seconds}`
+            }
 
+        }
+        /*********************************************************     RESET THE TIME    ********************/
+
+        resetButton.addEventListener('click', reset)
+        function reset() {
+            clearTimeout(workTimeId);
+            setButton.style.opacity = 1;
+            setButton.style['z-index'] = 0;
+            resetButton.style.opacity = 0;
+            resetButton.style['z-index'] = -5;
+            timeElement.innerText = `00:00`
+            workMinElement.value = "";
+            breakMinElement.value = "";
+        }
+
+        /********************************************************************************************/
+        startButton.addEventListener('click', startTimer)
+        function startTimer() {
+            workMin = workMinElement.value;
+            breakMin = breakMinElement.value;
+            if (workMin == "" || breakMin == "") {
+                alert("please enter the work and break time");
+            } else if ( !workTimeId && timeElement.innerText == `00:00`){
+                alert("Amazing please set");
+            }
+            else {
+                pauseButton.style.opacity = 1;
+                pauseButton.style['z-index'] = 0;
+                startButton.style.opacity = 0;
+                startButton.style['z-index'] = -5;
+                currentTime--
+                minutes = Math.floor(currentTime / 60);
+                seconds = currentTime % 60;
+                if (minutes < 10) {                    //just to add a '0' string for the numbers less than 10 
+                    minutes = '0' + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
                 if (currentTime <= 0) {
+
                     sound.play();
                     currentTime = breakMin * 60;
-
                 }
+              
                 timeElement.innerText = `${minutes}:${seconds}`
-                workTimeId = setTimeout(statTimer, 1000)
+                workTimeId = setTimeout(startTimer, 1000)
             }
         }
         /*****************************************************************************/
@@ -210,8 +231,12 @@
 
         function pause() {
             clearTimeout(workTimeId);
+            startButton.style.opacity = 1;
+            startButton.style['z-index'] = 0;
+            pauseButton.style.opacity = 0;
+            pauseButton.style['z-index'] = -5;
         }
-        document.querySelector('#pause-button').addEventListener('click', pause)
+        pauseButton.addEventListener('click', pause)
 
         /****************************************************************************/
 
